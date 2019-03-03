@@ -21,6 +21,12 @@ public:
 
     /// Read whole binary file to a list of bytes
     static std::vector<uint8_t> readBinary(const std::string &path);
+
+    /// Write string to a text file
+    static bool write(const std::string &path, const std::string &content);
+
+    /// Write list of bytes to a binary file
+    static bool writeBinary(const std::string &path, std::vector<uint8_t> content);
 };
 
 } /* namespace spp */
