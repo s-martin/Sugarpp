@@ -1,6 +1,7 @@
 
 add_executable(${PROJECT_NAME}Test main.cpp
-                                    FileTest.cpp)
+                                    FileTest.cpp
+                                    SppStringTest.cpp)
 
 target_include_directories(${PROJECT_NAME}Test PUBLIC ../include)
 

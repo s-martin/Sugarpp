@@ -1,5 +1,5 @@
 
-add_library(${PROJECT_NAME} STATIC File.cpp)
+add_library(${PROJECT_NAME} STATIC File.cpp SppString.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ../include)
 
