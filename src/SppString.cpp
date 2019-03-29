@@ -39,11 +39,7 @@ std::vector<std::string> String::split(const std::string &stringToSplit, char de
  */
 bool String::contains(const std::string &str, char charToFind)
 {
-    if (str.find(charToFind) != std::string::npos)
-    {
-        return true;
-    }
-    return false; 
+	return (str.find(charToFind) != std::string::npos);
 }
 
 } /* namespace spp */

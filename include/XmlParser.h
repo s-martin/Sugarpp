@@ -14,13 +14,17 @@ namespace spp
 
 /*!
  * @class XmlParser
- * @brief XML parsing
+ * @brief Utility class for XML parsing using Xerces-C.
  */
 class XmlParser
 {
 public:
     XmlParser();
     virtual ~XmlParser();
+	XmlParser(const XmlParser& other) = delete;
+	XmlParser(XmlParser&& other) noexcept = delete;
+	XmlParser& operator=(const XmlParser& other) = delete;
+	XmlParser& operator=(XmlParser&& other) noexcept = delete;
 
 	/// Get XML document object
     xercesc::DOMDocument * getDocument(const std::string &xml) const;
@@ -43,6 +47,11 @@ public:
 		static_assert(std::is_arithmetic<T>::value, "Template type must be numeric");
 		
 		auto str = getStringValue(element, tagName);
+		if (str.empty())
+		{
+			return spp::UNDEFINED_NUM;
+		}
+
 		T result;
 		if (auto[p, ec] = std::from_chars(str.data(), str.data() + str.size(), result);	ec == std::errc())
 		{
@@ -56,7 +65,7 @@ public:
 	std::string toStdString(const XMLCh* str) const;
 
 private:
-    xercesc::XercesDOMParser * m_parser;
+    std::unique_ptr<xercesc::XercesDOMParser> m_parser;
 };
 
 } /* namespace spp */

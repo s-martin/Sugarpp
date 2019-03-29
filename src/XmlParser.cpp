@@ -11,13 +11,11 @@ XmlParser::XmlParser()
 {
     xercesc::XMLPlatformUtils::Initialize();
 
-    m_parser = new xercesc::XercesDOMParser();
+    m_parser = std::make_unique<xercesc::XercesDOMParser>();
 }
 
 XmlParser::~XmlParser()
 {
-    delete m_parser;
-
     xercesc::XMLPlatformUtils::Terminate();
 }
 
@@ -28,7 +26,7 @@ XmlParser::~XmlParser()
  */
 xercesc::DOMDocument * XmlParser::getDocument(const std::string &xml) const
 {
-    xercesc::MemBufInputSource buffer(reinterpret_cast<const unsigned char*>(xml.c_str()), xml.size(), "myxml (in memory)");
+    xercesc::MemBufInputSource buffer(reinterpret_cast<const unsigned char*>(xml.c_str()), xml.size(), "myxml (in memory)"); // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
     m_parser->parse(buffer);
     return m_parser->getDocument(); 
 }

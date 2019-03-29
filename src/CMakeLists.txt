@@ -3,6 +3,7 @@ add_library(${PROJECT_NAME} STATIC
                                     CXXWinApi.cpp
                                     File.cpp
                                     SppString.cpp
+									Tracing.cpp
                                     XmlParser.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ../include)
