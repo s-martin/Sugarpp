@@ -19,11 +19,11 @@ endif()
 set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.68 REQUIRED COMPONENTS log log_setup unit_test_framework)
+find_package(Boost 1.67 REQUIRED COMPONENTS log log_setup unit_test_framework)
 message(STATUS "Boost version: ${Boost_VERSION}")
 
 
-find_package(XercesC CONFIG REQUIRED)
+find_package(XercesC REQUIRED)
 message(STATUS "Xerces-C version: ${XercesC_VERSION}")
 
                   
@@ -37,6 +37,10 @@ message(STATUS "Xerces-C version: ${XercesC_VERSION}")
                   
 enable_testing()
 include(CTest)
+
+# copy test data
+file(COPY test-data/test.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/test/test-data)
+file(COPY test-data/test.bin DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/test/test-data)
 
 add_subdirectory(src)
 add_subdirectory(test)
