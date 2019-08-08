@@ -1,5 +1,7 @@
 #include "CXXWinApi.h"
 
+#ifdef _WIN32
+
 #include "Windows.h"
 
 #include <sstream>
@@ -59,3 +61,5 @@ std::string CXXWinApi::getFileVersionInfo(const std::string &module /*= ""*/)
 }
 
 } /* namespace spp */
+
+#endif // _WIN32
