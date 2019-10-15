@@ -9,8 +9,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: install boost, X11, lcov, gcov
-      run: sudo apt install libboost-test-dev libboost-log-dev xerces-c-dev lcov gcovr
+    - name: install boost, xerces, lcov, gcov
+      run: sudo apt install libboost-test-dev libboost-log-dev libxerces-c-dev lcov gcovr
     - name: cmake config
       run: |
         mkdir build
