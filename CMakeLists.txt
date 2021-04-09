@@ -19,7 +19,7 @@ endif()
 set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.75 REQUIRED COMPONENTS log log_setup unit_test_framework)
+find_package(Boost 1.71 REQUIRED COMPONENTS log log_setup unit_test_framework)
 message(STATUS "Boost version: ${Boost_VERSION}")
 
 
