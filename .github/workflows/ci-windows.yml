@@ -1,0 +1,23 @@
+name: CI-Windows
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+      
+    steps:
+    - uses: actions/checkout@v1
+    - name: install boost, xerces, lcov, gcov
+      run: vcpkg install boost-test boost-log libxerces-c lcov gcovr --triplet x64-windows
+    - name: cmake config
+      run: |
+        md build
+        cd build
+        cmake ../ -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+    - name: make
+      run: cmake --build ./build
+    - name: run unit tests
+      run: cmake --build ./build --target test
+      
