@@ -35,6 +35,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      
+      - name: Download and install Boost
+        # You may pin to the exact commit or the version.
+        # uses: MarkusJx/install-boost@d175e516e6d321b68ff67afecf7da5e7c53c16f7
+        uses: MarkusJx/install-boost@v2.4.3
+        with:
+            # The boost version to install, e.g. "1.73.0"
+            boost_version: 1.71.0
+            # The toolset used to compile boost, e.g. "msvc"
+            # toolset: # optional, default is 
+            # The platform version boost was compiled on, e.g. "18.04"
+            # platform_version: # optional, default is 
+            # Whether the boost libraries are linked statically or dynamically
+            # link: # optional, default is 
+            # The architecture the binaries were built for
+            # arch: # optional, default is x86
+            # The dirctory to install boost into
+            # boost_install_dir: # optional, default is 
+            # Wheter to use actions/cache to improve build times
+            # cache: # optional, default is true
 
       - name: Configure CMake
         run: cmake -B ${{ env.build }}
