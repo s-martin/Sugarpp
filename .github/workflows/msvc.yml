@@ -37,23 +37,13 @@ jobs:
         uses: actions/checkout@v3
       
       - name: Download and install Boost
-        # You may pin to the exact commit or the version.
-        # uses: MarkusJx/install-boost@d175e516e6d321b68ff67afecf7da5e7c53c16f7
         uses: MarkusJx/install-boost@v2.4.4
         id: install-boost
         with:
-            # The boost version to install, e.g. "1.73.0"
             boost_version: 1.81.0
             toolset: msvc 
-            platform_version: 2022 
-            # Whether the boost libraries are linked statically or dynamically
-            # link: # optional, default is 
-            # The architecture the binaries were built for
-            # arch: # optional, default is x86
-            # The dirctory to install boost into
-            # boost_install_dir: # optional, default is 
-            # Wheter to use actions/cache to improve build times
-            # cache: # optional, default is true
+            platform_version: 2022
+            link: shared
 
       - name: Configure CMake
         run: |
