@@ -31,7 +31,7 @@ jobs:
 
     # Build is not required unless generated source files are used
     - name: Build CMake
-      run: cmake --build ${{ env.build }}
+      run: cmake --build build
 
     
     #- name: install boost, xerces, lcov, gcov
