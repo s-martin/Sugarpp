@@ -50,7 +50,7 @@ jobs:
     #  run: cmake --build ./build
     
     - name: run unit tests
-      run: cmake --build ${{ env.build }} --target test
+      run: cmake --build ${{ env.build }} -DCMAKE_BUILD_TYPE=${{ env.config }} --target test
       
 
 
