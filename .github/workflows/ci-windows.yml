@@ -2,6 +2,11 @@ name: CI-Windows
 
 on: [push]
 
+env:
+  # Path to the CMake build directory.
+  build: '${{ github.workspace }}/build'
+  config: 'Debug'
+
 jobs:
   build:
 
@@ -25,13 +30,13 @@ jobs:
       run: vcpkg install xerces-c --triplet x64-windows
 
     - name: Configure CMake
-      run: cmake . -DCMAKE_BUILD_TYPE=$BUILD_TYPE -B build -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+      run: cmake . -DCMAKE_BUILD_TYPE=${{ env.config }} -B ${{ env.build }} -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
       env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
 
     # Build is not required unless generated source files are used
     - name: Build CMake
-      run: cmake --build build
+      run: cmake --build ${{ env.build }}
 
     
     #- name: install boost, xerces, lcov, gcov
@@ -45,7 +50,7 @@ jobs:
     #  run: cmake --build ./build
     
     - name: run unit tests
-      run: cmake --build ./build --target test
+      run: cmake --build ${{ env.build }} --target test
       
 
 
