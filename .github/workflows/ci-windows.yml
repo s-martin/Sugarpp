@@ -24,9 +24,6 @@ jobs:
           platform_version: 2022
           link: shared
           arch: x86
-            
-    #- name: install xerces
-    #  run: vcpkg install xerces-c --triplet x64-windows
     
     - name: vcpkg installs xerces-c
       uses: johnwason/vcpkg-action@v4
@@ -43,17 +40,6 @@ jobs:
 
     - name: Build CMake
       run: cmake --build ${{ env.build }}
-
-    
-    #- name: install boost, xerces, lcov, gcov
-    #  run: vcpkg install boost-test boost-log xerces-c --triplet x64-windows
-    #- name: cmake config
-    #  run: |
-    #    md build
-    #    cd build
-    #    cmake ../ -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
-    #- name: make
-    #  run: cmake --build ./build
     
     - name: run unit tests
       run: cmake --build ${{ env.build }} --config ${{ env.config }} --target Sugar++Test
