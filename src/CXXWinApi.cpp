@@ -9,6 +9,11 @@
 namespace spp
 {
 
+/** Get version from application/DLL
+ * 
+ * @param module Get version from this module
+ * 
+ */
 std::string CXXWinApi::getFileVersionInfo(const std::string &module /*= ""*/)
 {
     TCHAR szVersionFile[MAX_PATH]; 

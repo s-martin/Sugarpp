@@ -5,6 +5,10 @@
 namespace spp
 {
 
+/** C++ API for WINAPI
+ * 
+ * 
+ */
 class CXXWinApi
 {
 public:
