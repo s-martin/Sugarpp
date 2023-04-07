@@ -40,7 +40,6 @@ message(STATUS "Xerces-C version: ${XercesC_VERSION}")
 # first we can indicate the documentation build as an option and set it to ON by default
 option(BUILD_DOC "Build documentation" ON)
 
-#doxygen_add_docs(doc ${PROJECT_SOURCE_DIR}/ga)
 if(BUILD_DOC)
     find_package(Doxygen OPTIONAL_COMPONENTS dot mscgen dia)
 
@@ -63,7 +62,6 @@ if(BUILD_DOC)
         message("Doxygen need to be installed to generate the doxygen documentation")
     endif (DOXYGEN_FOUND)
 endif(BUILD_DOC)
-
 
 set(CMAKE_CTEST_ARGUMENTS "--rerun-failed;--output-on-failure;--output-junit ${PROJECT_NAME}Test_results.xml")
                   
