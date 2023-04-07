@@ -38,6 +38,18 @@ message(STATUS "Xerces-C version: ${XercesC_VERSION}")
 enable_testing()
 include(CTest)
 
+if(CMAKE_COMPILER_IS_GNUCXX)
+    include(CodeCoverage)
+	APPEND_COVERAGE_COMPILER_FLAGS()
+	# TODO fix not working excludes in project
+	set(COVERAGE_LCOV_EXCLUDES 'test/*' '/usr/*')
+    SETUP_TARGET_FOR_COVERAGE_LCOV(NAME ${PROJECT_NAME}_lcov EXECUTABLE ${PROJECT_NAME}Test)
+	SETUP_TARGET_FOR_COVERAGE_GCOVR_HTML(NAME ${PROJECT_NAME}_gcov EXECUTABLE ${PROJECT_NAME}Test)
+else()
+	# TODO
+	#add_custom_target(${PROJECT_NAME}coverage COMMAND "opencppcoverage --working_dir ${CMAKE_CURRENT_BINARY_DIR}/test -- ${CMAKE_CURRENT_BINARY_DIR}/test/Sugar++Test.exe")
+endif()
+
 # copy test data
 file(COPY test-data/test.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/test/test-data)
 file(COPY test-data/test.bin DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/test/test-data)
@@ -45,5 +57,11 @@ file(COPY test-data/test.bin DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/test/test-d
 add_subdirectory(src)
 add_subdirectory(test)
 
-#coverage
-add_custom_target(${PROJECT_NAME}coverage COMMAND "opencppcoverage --working_dir ./build/test -- ./build/test/Debug/Sugar++Test.exe")
+
+
+
+
+
+
+
+
