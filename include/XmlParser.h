@@ -6,7 +6,9 @@
 #include <xercesc/dom/DOMElement.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp>
 
+#ifndef _MSC_VER
 #include <boost/lexical_cast.hpp>
+#endif
 
 #include <memory>
 #include <string>
@@ -58,7 +60,7 @@ public:
 			return spp::UNDEFINED_NUM;
 		}
 
-#if defined (_MSC_VER)
+#ifdef _MSC_VER
         T result;
 		if (auto[p, ec] = std::from_chars(str.data(), str.data() + str.size(), result);	ec == std::errc())
 		{
