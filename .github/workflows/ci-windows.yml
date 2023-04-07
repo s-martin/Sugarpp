@@ -38,6 +38,8 @@ jobs:
       env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
 
+    - uses: ammaraskar/msvc-problem-matcher@master
+
     - name: Build CMake
       run: cmake --build ${{ env.build }}
     

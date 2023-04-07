@@ -6,6 +6,10 @@
 #include <xercesc/dom/DOMElement.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp>
 
+#ifndef _MSC_VER
+#include <boost/lexical_cast.hpp>
+#endif
+
 #include <memory>
 #include <string>
 #include <vector>
@@ -36,7 +40,7 @@ public:
 
 	/// Get string attribute from XML element
 	std::string getStringAttribute(const xercesc::DOMNode* currNode, const std::string& attrName) const;
-	//std::string getStringAttribute(xercesc::DOMElement *element, const std::string &tagName, const std::string &attributeName) const;
+	std::string getStringAttribute(xercesc::DOMElement *element, const std::string &tagName, const std::string &attributeName) const;
 
 	/*!
 	* Get numeric value from XML element.
@@ -56,11 +60,23 @@ public:
 			return spp::UNDEFINED_NUM;
 		}
 
-		T result;
+#ifdef _MSC_VER
+        T result;
 		if (auto[p, ec] = std::from_chars(str.data(), str.data() + str.size(), result);	ec == std::errc())
 		{
 			return result;
 		}
+#else
+        try 
+		{ 
+            auto result = boost::lexical_cast<T>(str.c_str());
+			return result;
+		}
+		catch (boost::bad_lexical_cast const&)
+		{
+			return spp::UNDEFINED_NUM;
+		}
+#endif
 
 		return spp::UNDEFINED_NUM;
 	}
@@ -78,7 +94,7 @@ public:
 	>
 	T getNumericAttribute(xercesc::DOMElement *element, const std::string &tagName, const std::string &attributeName) const
 	{
-		auto str = getStringAttribute(element, /*tagName,*/ attributeName);
+		auto str = getStringAttribute(element, tagName, attributeName);
 		if (str.empty())
 		{
 			return spp::UNDEFINED_NUM;

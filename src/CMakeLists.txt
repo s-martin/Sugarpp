@@ -1,6 +1,6 @@
 
 add_library(${PROJECT_NAME} STATIC 
-                                    CXXWinApi.cpp
+                                    $<$<PLATFORM_ID:Windows>:CXXWinApi.cpp>
                                     File.cpp
                                     SppString.cpp
 									Tracing.cpp
