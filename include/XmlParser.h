@@ -6,6 +6,8 @@
 #include <xercesc/dom/DOMElement.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp>
 
+#include <boost/lexical_cast.hpp>
+
 #include <memory>
 #include <string>
 #include <vector>
@@ -56,11 +58,23 @@ public:
 			return spp::UNDEFINED_NUM;
 		}
 
-		T result;
+#if defined (_MSC_VER)
+        T result;
 		if (auto[p, ec] = std::from_chars(str.data(), str.data() + str.size(), result);	ec == std::errc())
 		{
 			return result;
 		}
+#else
+        try 
+		{ 
+            auto result = boost::lexical_cast<T>(str.c_str());
+			return result;
+		}
+		catch (boost::bad_lexical_cast const&)
+		{
+			return spp::UNDEFINED_NUM;
+		}
+#endif
 
 		return spp::UNDEFINED_NUM;
 	}

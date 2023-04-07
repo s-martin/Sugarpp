@@ -52,8 +52,10 @@ BOOST_AUTO_TEST_CASE(write_001)
     std::filesystem::remove("./test-data/output.txt");
 
     std::string input = "FileContentLine1\nFileContentLine2\n";
-
+#ifdef _WIN32
     BOOST_CHECK(!spp::File::write("C:\\Program Files\\blaaaaaa.txt", input));
+#endif
+// TODO test for linux
 
     BOOST_CHECK(!spp::File::write("./test-data/output_wrong.txt", ""));
 
@@ -70,7 +72,10 @@ BOOST_AUTO_TEST_CASE(writeBinary_001)
 
     std::vector<uint8_t> input { 0x01, 0x02, 0x03, 0x04, 0x00, 0x31, 0x32, 0x33, 0x34 };
     
+#ifdef _WIN32
     BOOST_CHECK(!spp::File::writeBinary("C:\\Program Files\\blaaaaaaXYXX.dat", input));
+#endif
+// TODO test for linux
 
     BOOST_CHECK(!spp::File::writeBinary("./test-data/output_wrong.dat", {}));
 
