@@ -14,16 +14,24 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
+
     - name: install boost, xerces, lcov, gcov
       run: sudo apt install libboost-test-dev libboost-log-dev libxerces-c-dev lcov gcovr
+
     - name: cmake config
       run: cmake . -B ${{ env.build }}
+
+    - uses: ammaraskar/gcc-problem-matcher@master
+
     - name: make
       run: cmake --build ${{ env.build }}
+
     - name: run unit tests
       run: cmake --build ${{ env.build }} --target Sugar++Test
+
     - name: run coverage
-      run: cmake --build ${{ env.build }} --target Sugar++_lcov  
+      run: cmake --build ${{ env.build }} --target Sugar++_lcov
+      
     - name: Report code coverage
       uses: zgosalvez/github-actions-report-lcov@v3
       with:

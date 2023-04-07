@@ -36,6 +36,8 @@ message(STATUS "Xerces-C version: ${XercesC_VERSION}")
 #    set_property(TARGET Boost::filesystem PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR})
 #    set_property(TARGET Boost::filesystem PROPERTY INTERFACE_LINK_LIBRARIES ${Boost_LIBRARIES})
 #endif()
+
+set(CMAKE_CTEST_ARGUMENTS "--rerun-failed;--output-on-failure;--output-junit ${PROJECT_NAME}Test_results.xml")
                   
 enable_testing()
 include(CTest)
