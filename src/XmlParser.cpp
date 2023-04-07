@@ -71,26 +71,26 @@ std::string XmlParser::getStringValue(xercesc::DOMElement *element, const std::s
  * @param attributeName Name of XML attribute
  * @returns String value of XML attribute or empty, if failed
  */
-//std::string XmlParser::getStringAttribute(xercesc::DOMElement *element, const std::string &tagName, const std::string &attributeName) const
-//{
-//	if (element == nullptr || tagName.empty() || attributeName.empty())
-//	{
-//		return {};
-//	}
-//
-//	auto child = element->getFirstElementChild();
-//	while (child != nullptr)
-//	{
-//		if (toStdString(child->getNodeName()) == tagName)
-//		{			
-//			// TODO check and test reinterpret
-//			return toStdString(child->getAttribute(reinterpret_cast<const XMLCh*>(attributeName.c_str())));
-//		}
-//		child = child->getNextElementSibling();
-//	}
-//
-//	return {};
-//}
+std::string XmlParser::getStringAttribute(xercesc::DOMElement *element, const std::string &tagName, const std::string &attributeName) const
+{
+	if (element == nullptr || tagName.empty() || attributeName.empty())
+	{
+		return {};
+	}
+
+	auto child = element->getFirstElementChild();
+	while (child != nullptr)
+	{
+		if (toStdString(child->getNodeName()) == tagName)
+		{			
+			// TODO check and test reinterpret
+			return toStdString(child->getAttribute(reinterpret_cast<const XMLCh*>(attributeName.c_str())));
+		}
+		child = child->getNextElementSibling();
+	}
+
+	return {};
+}
 
 std::string XmlParser::getStringAttribute(const xercesc::DOMNode* currNode, const std::string& attrName) const
 {

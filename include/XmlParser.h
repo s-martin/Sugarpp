@@ -40,7 +40,7 @@ public:
 
 	/// Get string attribute from XML element
 	std::string getStringAttribute(const xercesc::DOMNode* currNode, const std::string& attrName) const;
-	//std::string getStringAttribute(xercesc::DOMElement *element, const std::string &tagName, const std::string &attributeName) const;
+	std::string getStringAttribute(xercesc::DOMElement *element, const std::string &tagName, const std::string &attributeName) const;
 
 	/*!
 	* Get numeric value from XML element.
@@ -94,7 +94,7 @@ public:
 	>
 	T getNumericAttribute(xercesc::DOMElement *element, const std::string &tagName, const std::string &attributeName) const
 	{
-		auto str = getStringAttribute(element, /*tagName,*/ attributeName);
+		auto str = getStringAttribute(element, tagName, attributeName);
 		if (str.empty())
 		{
 			return spp::UNDEFINED_NUM;
