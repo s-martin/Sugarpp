@@ -9,6 +9,8 @@ endif()
 project(Sugar++ VERSION 0.1
                   DESCRIPTION "Syntactic sugar and helpers for C++"
                   LANGUAGES CXX)
+		  
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 if(MSVC)
     add_definitions("/W4 /D_CRT_SECURE_NO_WARNINGS /permissive-")
