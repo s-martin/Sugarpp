@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: install boost, xerces, lcov, gcov
-      run: sudo apt install libboost-test-dev libboost-log-dev libxerces-c-dev lcov gcovr
+      run: sudo apt install libboost-test-dev libboost-log-dev libxerces-c-dev lcov gcovr doxygen graphviz mscgen dia
 
     - name: cmake config
       run: cmake . -B ${{ env.build }}
@@ -41,6 +41,17 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ${{ env.build }}
         update-comment: true
+
+    - name: Create nojekyll to ensure doxygen pages with underscores work on gh pages
+      run: touch ${{ env.build }}/doc/html/.nojekyll
+      shell: bash
+
+    - name: Deploy Doxygen to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: "gh-pages"
+        folder: ${{ env.build }}/doc/html
       
       
       
