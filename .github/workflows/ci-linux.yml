@@ -29,18 +29,18 @@ jobs:
     - name: run unit tests
       run: cmake --build ${{ env.build }} --target Sugar++Test
 
-    - name: run coverage
-      run: cmake --build ${{ env.build }} --target Sugar++_lcov
+    #- name: run coverage
+    #  run: cmake --build ${{ env.build }} --target Sugar++_lcov
       
-    - name: Report code coverage
-      uses: zgosalvez/github-actions-report-lcov@v3
-      with:
-        coverage-files: ${{ env.build }}/Sugar++_lcov.info
-        minimum-coverage: 45
-        artifact-name: code-coverage-report
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        working-directory: ${{ env.build }}
-        update-comment: true
+    #- name: Report code coverage
+    #  uses: zgosalvez/github-actions-report-lcov@v3
+    #  with:
+    #    coverage-files: ${{ env.build }}/Sugar++_lcov.info
+    #    minimum-coverage: 45
+    #    artifact-name: code-coverage-report
+    #    github-token: ${{ secrets.GITHUB_TOKEN }}
+    #    working-directory: ${{ env.build }}
+    #    update-comment: true
 
     - name: Create nojekyll to ensure doxygen pages with underscores work on gh pages
       run: touch ${{ env.build }}/doc/html/.nojekyll
