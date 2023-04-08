@@ -86,7 +86,7 @@ std::vector<uint8_t> File::readBinary(const std::string &path)
  * Write string to a text file.
  * @param path File path
  * @param content String to write
- * @returns True, if sccessful
+ * @returns True, if successful
  */
 bool File::write(const std::string &path, const std::string &content)
 {
@@ -110,7 +110,7 @@ bool File::write(const std::string &path, const std::string &content)
  * Write list of bytes to a binary file.
  * @param path File path
  * @param content Vector of bytes to write
- * @returns True, if sccessful
+ * @returns True, if successful
  */
 bool File::writeBinary(const std::string &path, std::vector<uint8_t> content)
 {

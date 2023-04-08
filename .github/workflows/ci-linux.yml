@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: install boost, xerces, lcov, gcov
-      run: sudo apt install libboost-test-dev libboost-log-dev libxerces-c-dev lcov gcovr
+      run: sudo apt install libboost-test-dev libboost-log-dev libxerces-c-dev lcov gcovr doxygen graphviz mscgen dia
 
     - name: cmake config
       run: cmake . -B ${{ env.build }}
@@ -29,18 +29,29 @@ jobs:
     - name: run unit tests
       run: cmake --build ${{ env.build }} --target Sugar++Test
 
-    - name: run coverage
-      run: cmake --build ${{ env.build }} --target Sugar++_lcov
+    #- name: run coverage
+    #  run: cmake --build ${{ env.build }} --target Sugar++_lcov
       
-    - name: Report code coverage
-      uses: zgosalvez/github-actions-report-lcov@v3
+    #- name: Report code coverage
+    #  uses: zgosalvez/github-actions-report-lcov@v3
+    #  with:
+    #    coverage-files: ${{ env.build }}/Sugar++_lcov.info
+    #    minimum-coverage: 45
+    #    artifact-name: code-coverage-report
+    #    github-token: ${{ secrets.GITHUB_TOKEN }}
+    #    working-directory: ${{ env.build }}
+    #    update-comment: true
+
+    - name: Create nojekyll to ensure doxygen pages with underscores work on gh pages
+      run: touch ${{ env.build }}/doc/html/.nojekyll
+      shell: bash
+
+    - name: Deploy Doxygen to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        coverage-files: ${{ env.build }}/Sugar++_lcov.info
-        minimum-coverage: 45
-        artifact-name: code-coverage-report
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        working-directory: ${{ env.build }}
-        update-comment: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: "gh-pages"
+        folder: ${{ env.build }}/doc/html
       
       
       

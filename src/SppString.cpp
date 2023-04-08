@@ -35,7 +35,8 @@ std::vector<std::string> String::split(const std::string &stringToSplit, char de
  * Contains the string a character?
  * @param str String to check
  * @param charToFind Character to find
- * @returns True, if character was found; otherwise false
+ * @retval True Character was found
+ * @retval False Character was not found
  */
 bool String::contains(const std::string &str, char charToFind)
 {

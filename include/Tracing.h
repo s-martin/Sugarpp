@@ -5,6 +5,10 @@
 namespace spp
 {
 
+/** Tracing and Logging
+ * 
+ * 
+ */
 class Tracing
 {
 public:

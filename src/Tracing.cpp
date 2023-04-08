@@ -4,6 +4,11 @@
 namespace spp
 {
 
+/** Construct a new Tracing:: Tracing object
+ * 
+ * @param file 
+ * @param location 
+ */
 Tracing::Tracing(const std::string &file, std::string location) :
     where(std::move(location))
 {
