@@ -18,5 +18,7 @@ target_link_libraries(${PROJECT_NAME}Test
         Boost::unit_test_framework 
         XercesC::XercesC
         $<$<PLATFORM_ID:Windows>:version>)
+        
+set(CMAKE_CTEST_ARGUMENTS "--rerun-failed;--output-on-failure")
 
 add_test(NAME "${PROJECT_NAME}Test" COMMAND "${PROJECT_NAME}Test" --logger=JUNIT,message,${PROJECT_NAME}Test_results.xml WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
