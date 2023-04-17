@@ -62,19 +62,16 @@ if(BUILD_DOC)
         message("Doxygen need to be installed to generate the doxygen documentation")
     endif (DOXYGEN_FOUND)
 endif(BUILD_DOC)
-
-set(CMAKE_CTEST_ARGUMENTS "--rerun-failed;--output-on-failure;--output-junit ${PROJECT_NAME}Test_results.xml")
                   
 enable_testing()
 include(CTest)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     include(CodeCoverage)
-	APPEND_COVERAGE_COMPILER_FLAGS()
-	# TODO fix not working excludes in project
-	set(COVERAGE_LCOV_EXCLUDES 'test/*' '/usr/*')
+    APPEND_COVERAGE_COMPILER_FLAGS()
+    set(COVERAGE_EXCLUDES "/usr/include/*" "test/*")
     SETUP_TARGET_FOR_COVERAGE_LCOV(NAME ${PROJECT_NAME}_lcov EXECUTABLE ${PROJECT_NAME}Test)
-	SETUP_TARGET_FOR_COVERAGE_GCOVR_HTML(NAME ${PROJECT_NAME}_gcov EXECUTABLE ${PROJECT_NAME}Test)
+    SETUP_TARGET_FOR_COVERAGE_GCOVR_HTML(NAME ${PROJECT_NAME}_gcov EXECUTABLE ${PROJECT_NAME}Test)
 else()
 	# TODO
 	#add_custom_target(${PROJECT_NAME}coverage COMMAND "opencppcoverage --working_dir ${CMAKE_CURRENT_BINARY_DIR}/test -- ${CMAKE_CURRENT_BINARY_DIR}/test/Sugar++Test.exe")
