@@ -19,4 +19,4 @@ target_link_libraries(${PROJECT_NAME}Test
         XercesC::XercesC
         $<$<PLATFORM_ID:Windows>:version>)
 
-add_test(NAME "${PROJECT_NAME}Test" COMMAND "${PROJECT_NAME}Test" WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
+add_test(NAME "${PROJECT_NAME}Test" COMMAND "${PROJECT_NAME}Test" --logger=JUNIT,message,${PROJECT_NAME}Test_results.xml WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
