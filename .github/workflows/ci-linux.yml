@@ -56,7 +56,16 @@ jobs:
         lcov-file: ${{ env.build }}/Sugar++_lcov.info
         lcov-base: ${{ env.build }}/Sugar++_lcov.base
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        title: Coverage Report
+        title: lcov Coverage Report
+      
+    - name: Report code coverage with gcovr and coveralls
+      uses: threeal/gcovr-action@ea8803a5110d95e9872698e90f85fca35760366f
+      with:
+        excludes: |
+          test/*
+        coveralls-send: true
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+    
         
         
         
