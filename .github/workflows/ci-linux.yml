@@ -47,6 +47,14 @@ jobs:
         branch: "gh-pages"
         folder: ${{ env.build }}/doc/html
         
+    - name: Report code coverage with gcovr and coveralls
+      uses: threeal/gcovr-action@ea8803a5110d95e9872698e90f85fca35760366f
+      with:
+        excludes: |
+          test/*
+        coveralls-send: true
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        
     - name: Run coverage
       run: cmake --build ${{ env.build }} --target Sugar++_lcov
 
@@ -58,13 +66,6 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         title: lcov Coverage Report
       
-    - name: Report code coverage with gcovr and coveralls
-      uses: threeal/gcovr-action@ea8803a5110d95e9872698e90f85fca35760366f
-      with:
-        excludes: |
-          test/*
-        coveralls-send: true
-        github-token: ${{ secrets.GITHUB_TOKEN }}
     
         
         
