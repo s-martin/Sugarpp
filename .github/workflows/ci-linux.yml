@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: install boost, xerces, lcov, gcov
       run: sudo apt install libboost-test-dev libboost-log-dev libxerces-c-dev lcov gcovr doxygen graphviz mscgen dia
