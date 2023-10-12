@@ -17,7 +17,7 @@ Using [vcpkg](https://github.com/microsoft/vcpkg) to install dependencies is rec
 
 1. Clone or download the repository
 
-2. Install dependencies: `vcpkg install boost-test boost-log xerces-c-dev`
+2. Install dependencies: `vcpkg install boost-test boost-log xerces-c`
 
 #### Visual Studio 2019 or later
 
