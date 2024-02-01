@@ -47,7 +47,7 @@ jobs:
             link: shared
         
       - name: vcpkg installs xerces-c
-        uses: johnwason/vcpkg-action@v5
+        uses: johnwason/vcpkg-action@v6
         id: vcpkg
         with:
           pkgs: xerces-c
