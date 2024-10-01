@@ -59,7 +59,7 @@ jobs:
       run: cmake --build ${{ env.build }} --target Sugar++_lcov
 
     - name: Report code coverage
-      uses: romeovs/lcov-reporter-action@v0.3.1
+      uses: romeovs/lcov-reporter-action@v0.4.0
       with:
         lcov-file: ${{ env.build }}/Sugar++_lcov.info
         lcov-base: ${{ env.build }}/Sugar++_lcov.base
