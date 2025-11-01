@@ -64,7 +64,7 @@ std::vector<std::string> File::readLines(const std::string &path)
  * @param path File path
  * @returns Vector with bytes
  */
-std::vector<uint8_t> File::readBinary(const std::string &path)
+std::vector<std::uint8_t> File::readBinary(const std::string &path)
 {
     if (path.empty())
     {
@@ -74,7 +74,7 @@ std::vector<uint8_t> File::readBinary(const std::string &path)
     std::ifstream file(path, std::ios::binary);
     if (file)
     {
-        std::vector<uint8_t> res(std::istreambuf_iterator<char>(file), {});
+        std::vector<std::uint8_t> res(std::istreambuf_iterator<char>(file), {});
         file.close();
         return res;
     }
@@ -112,7 +112,7 @@ bool File::write(const std::string &path, const std::string &content)
  * @param content Vector of bytes to write
  * @returns True, if successful
  */
-bool File::writeBinary(const std::string &path, std::vector<uint8_t> content)
+bool File::writeBinary(const std::string &path, std::vector<std::uint8_t> content)
 {
     if (path.empty() || content.empty())
     {
